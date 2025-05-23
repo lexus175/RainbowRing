@@ -1241,7 +1241,680 @@
                 header.style.background = 'rgba(255, 255, 255, 0.1)';
             }
         });
+<div class="floating-hearts" id="hearts"></div>
 
+<!-- Back Button -->
+<button class="back-btn" id="backBtn" onclick="goBack()">
+    ← Back to Home
+</button>
+
+<header>
+    <nav class="container">
+        <div class="logo">🌈 RainbowRings</div>
+        <ul class="nav-links">
+            <li><a onclick="showSection('home')">Home</a></li>
+            <li><a onclick="showSection('feed')">Social Feed</a></li>
+            <li><a onclick="showSection('chat')">Messages</a></li>
+            <li><a onclick="showSection('features')">Features</a></li>
+            <li><a onclick="showSection('join')">Join Us</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- Home Section -->
+    <section class="section active" id="home">
+        <div class="hero">
+            <div class="container">
+                <h1>Love Without Limits</h1>
+                <p>The inclusive social platform for LGBTQ+ individuals embracing all forms of love</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="showSection('join')">Find Your Community</button>
+                    <button class="btn btn-secondary" onclick="showSection('features')">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="community">
+            <div class="container">
+                <h2>Celebrating All Identities</h2>
+                <p>Every stripe of the rainbow is welcome here</p>
+                <div class="pride-flags">
+                    <div class="flag rainbow" title="Pride Flag"></div>
+                    <div class="flag trans" title="Transgender Flag"></div>
+                    <div class="flag bi" title="Bisexual Flag"></div>
+                    <div class="flag pan" title="Pansexual Flag"></div>
+                    <div class="flag lesbian" title="Lesbian Flag"></div>
+                    <div class="flag ace" title="Asexual Flag"></div>
+                </div>
+                <p>Join thousands of amazing people finding love, friendship, and community</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Feed Section -->
+    <section class="section" id="feed">
+        <div class="social-feed">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Community Feed</h2>
+                
+                <div class="post-composer">
+                    <textarea class="post-input" placeholder="Share your thoughts with the community... What's on your mind? 🌈" id="postInput"></textarea>
+                    <div class="post-actions">
+                        <div class="post-options">
+                            <button class="post-option">📷 Photo</button>
+                            <button class="post-option">🎥 Video</button>
+                            <button class="post-option">📍 Location</button>
+                            <button class="post-option">😊 Feeling</button>
+                        </div>
+                        <button class="btn btn-primary" onclick="createPost()">Share Post</button>
+                    </div>
+                </div>
+
+                <div class="feed-posts" id="feedPosts">
+                    <div class="post">
+                        <div class="post-header">
+                            <div class="post-avatar">🦄</div>
+                            <div class="post-info">
+                                <h4>Alex Rainbow</h4>
+                                <div class="post-time">2 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            Just had the most amazing date night with my two partners! 💕 We went to the new art gallery downtown and then cooked dinner together. Feeling so grateful for this beautiful polycule! #PolyLife #LoveIsLove
+                        </div>
+                        <div class="post-interactions">
+                            <button class="interaction-btn">❤️ 24 Loves</button>
+                            <button class="interaction-btn">💬 8 Comments</button>
+                            <button class="interaction-btn">🔗 Share</button>
+                        </div>
+                    </div>
+
+                    <div class="post">
+                        <div class="post-header">
+                            <div class="post-avatar">🌟</div>
+                            <div class="post-info">
+                                <h4>Jordan Pride</h4>
+                                <div class="post-time">5 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            Coming out as non-binary to my family today was scary but so worth it! 🏳️‍⚧️ The support from this community gave me the courage I needed. Thank you all for being amazing! ✨
+                        </div>
+                        <div class="post-interactions">
+                            <button class="interaction-btn">❤️ 47 Loves</button>
+                            <button class="interaction-btn">💬 15 Comments</button>
+                            <button class="interaction-btn">🔗 Share</button>
+                        </div>
+                    </div>
+
+                    <div class="post">
+                        <div class="post-header">
+                            <div class="post-avatar">🔥</div>
+                            <div class="post-info">
+                                <h4>Sam Phoenix</h4>
+                                <div class="post-time">1 day ago</div>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            Pride month planning committee meeting tonight! 🌈 We're organizing the biggest celebration our city has ever seen. Who else is excited?! DM me if you want to volunteer! #Pride2024
+                        </div>
+                        <div class="post-interactions">
+                            <button class="interaction-btn">❤️ 92 Loves</button>
+                            <button class="interaction-btn">💬 32 Comments</button>
+                            <button class="interaction-btn">🔗 Share</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Section -->
+    <section class="section" id="chat">
+        <div class="chat-section">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Messages</h2>
+                
+                <div class="chat-container">
+                    <div class="chat-sidebar">
+                        <h3 style="margin-bottom: 1rem;">Conversations</h3>
+                        <div class="chat-list">
+                            <div class="chat-item active" onclick="selectChat(this, 'Riley')">
+                                <div class="chat-avatar">🌺</div>
+                                <div>
+                                    <div style="font-weight: bold;">Riley</div>
+                                    <div style="font-size: 0.9rem; opacity: 0.7;">Hey! How was your day? 💕</div>
+                                </div>
+                            </div>
+                            <div class="chat-item" onclick="selectChat(this, 'Casey & Morgan')">
+                                <div class="chat-avatar">💫</div>
+                                <div>
+                                    <div style="font-weight: bold;">Casey & Morgan</div>
+                                    <div style="font-size: 0.9rem; opacity: 0.7;">Group chat: Dinner plans?</div>
+                                </div>
+                            </div>
+                            <div class="chat-item" onclick="selectChat(this, 'Taylor')">
+                                <div class="chat-avatar">🦋</div>
+                                <div>
+                                    <div style="font-weight: bold;">Taylor</div>
+                                    <div style="font-size: 0.9rem; opacity: 0.7;">The concert was amazing!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-window">
+                        <div class="chat-header">
+                            <div class="chat-avatar">🌺</div>
+                            <div>
+                                <div style="font-weight: bold;" id="chatName">Riley</div>
+                                <div style="font-size: 0.9rem; opacity: 0.7;">Online now</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message received">Hey! How was your day? 💕</div>
+                            <div class="message sent">It was great! Just got back from the farmer's market with my partners</div>
+                            <div class="message received">That sounds lovely! I'd love to meet them sometime 😊</div>
+                            <div class="message sent">They'd love to meet you too! Maybe we could all grab coffee this weekend?</div>
+                            <div class="message received">That sounds perfect! I'm free Saturday afternoon ✨</div>
+                        </div>
+                        
+                        <div class="chat-input-container">
+                            <input type="text" class="chat-input" placeholder="Type a message..." id="messageInput">
+                            <button class="send-btn" onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="features">
+            <div class="container">
+                <h2>Built for Every Kind of Love</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">💕</div>
+                        <h3>Polyamory Friendly</h3>
+                        <p>Connect with multiple partners openly. Set relationship status as single, partnered, or seeking additional connections.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏳️‍🌈</div>
+                        <h3>LGBTQ+ Focused</h3>
+                        <p>A safe space designed by and for our community. Express your authentic self with pride.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <h3>Group Connections</h3>
+                        <p>Find polycules, join friend groups, or create communities around shared interests and values.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Safe & Secure</h3>
+                        <p>Advanced privacy controls, identity verification, and community moderation keep you protected.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <h3>Real-time Chat</h3>
+                        <p>Connect instantly with matches and friends through our secure messaging system.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Social Sharing</h3>
+                        <p>Share your journey, celebrate milestones, and connect through posts and community discussions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section class="section" id="join">
+        <div class="join-section">
+            <div class="container">
+                <h2>Ready to Find Your People?</h2>
+                <p>Join RainbowRings and start building meaningful connections today</p>
+                
+                <form class="signup-form" id="signupForm">
+                    <div class="form-group">
+                        <label>Display Name</label>
+                        <input type="text" placeholder="How should we call you?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" required id="birthDate">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>I identify as:</label>
+                        <select required>
+                            <option value="">Select your identity</option>
+                            <option value="lesbian">Lesbian</option>
+                            <option value="gay">Gay</option>
+                            <option value="bisexual">Bisexual</option>
+                            <option value="transgender">Transgender</option>
+                            <option value="queer">Queer</option>
+                            <option value="questioning">Questioning</option>
+                            <option value="intersex">Intersex</option>
+                            <option value="asexual">Asexual</option>
+                            <option value="aromantic">Aromantic</option>
+                            <option value="pansexual">Pansexual</option>
+                            <option value="nonbinary">Non-binary</option>
+                            <option value="genderfluid">Genderfluid</option>
+                            <option value="other">Other/Multiple</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Relationship Style:</label>
+                        <div class="relationship-options">
+                            <div class="relationship-card" data-value="monogamous">
+                                <strong>Monogamous</strong>
+                                <p>Seeking one special person</p>
+                            </div>
+                            <div class="relationship-card" data-value="polyamorous">
+                                <strong>Polyamorous</strong>
+                                <p>Open to multiple loving relationships</p>
+                            </div>
+                            <div class="relationship-card" data-value="exploring">
+                                <strong>Exploring</strong>
+                                <p>Figuring out what works for me</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the Terms of Service and Privacy Policy</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Join the Rainbow 🌈</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 RainbowRings. Love is love. All rights reserved.</p>
+        <p>💖 Built with pride for our amazing community 💖</p>
+    </div>
+</footer>
+
+<script>
+    // Security: Force HTTPS
+    if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+        location.replace('https:' + window.location.href.substring(window.location.protocol.length));
+    }
+
+    // Security: Input sanitization function
+    function sanitizeInput(input) {
+        const temp = document.createElement('div');
+        temp.textContent = input;
+        return temp.innerHTML;
+    }
+
+    // Security: Rate limiting for posts and messages
+    let lastPostTime = 0;
+    let lastMessageTime = 0;
+    const RATE_LIMIT = 2000; // 2 seconds between posts/messages
+
+    let ageVerified = false;
+
+    // Age verification functions
+    function verifyAge(isOver18) {
+        if (isOver18) {
+            ageVerified = true;
+            document.getElementById('ageModal').classList.add('hidden');
+            // Store age verification (note: using browser memory, not localStorage)
+            window.ageVerified = true;
+        } else {
+            alert('Sorry, you must be 18 or older to access RainbowRings. Thank you for your honesty!');
+            // Redirect to a safe alternative
+            window.location.href = 'https://www.pflag.org/youthresources';
+        }
+    }
+
+    // Check if user has already verified age
+    function checkAgeVerification() {
+        if (window.ageVerified) {
+            document.getElementById('ageModal').classList.add('hidden');
+            ageVerified = true;
+        }
+    }
+
+    // Show different sections
+    function showSection(sectionName) {
+        if (!ageVerified && !window.ageVerified) {
+            document.getElementById('ageModal').classList.remove('hidden');
+            return;
+        }
+
+        // Hide all sections
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => section.classList.remove('active'));
+        
+        // Show selected section
+        document.getElementById(sectionName).classList.add('active');
+        
+        // Show/hide back button
+        const backBtn = document.getElementById('backBtn');  
+        if (sectionName === 'home') {
+            backBtn.classList.remove('show');
+        } else {
+            backBtn.classList.add('show');
+            // Update back button text based on current section
+            const sectionTitles = {
+                'feed': 'Social Feed',
+                'chat': 'Messages', 
+                'features': 'Features',
+                'join': 'Join Us'
+            };
+            backBtn.innerHTML = `← Back from ${sectionTitles[sectionName] || 'Page'}`;
+        }
+    }
+
+    // Go back to home page
+    function goBack() {
+        showSection('home');
+    }
+
+    // Chat functionality
+    function selectChat(element, name) {
+        // Remove active class from all chat items
+        const chatItems = document.querySelectorAll('.chat-item');
+        chatItems.forEach(item => item.classList.remove('active'));
+        
+        // Add active class to selected item
+        element.classList.add('active');
+        
+        // Update chat header
+        document.getElementById('chatName').textContent = name;
+        
+        // Clear and update messages based on selection
+        const messagesContainer = document.getElementById('chatMessages');
+        messagesContainer.innerHTML = '';
+        
+        if (name === 'Riley') {
+            messagesContainer.innerHTML = `
+                <div class="message received">Hey! How was your day? 💕</div>
+                <div class="message sent">It was great! Just got back from the farmer's market with my partners</div>
+                <div class="message received">That sounds lovely! I'd love to meet them sometime 😊</div>
+                <div class="message sent">They'd love to meet you too! Maybe we could all grab coffee this weekend?</div>
+                <div class="message received">That sounds perfect! I'm free Saturday afternoon ✨</div>
+            `;
+        } else if (name === 'Casey & Morgan') {
+            messagesContainer.innerHTML = `
+                <div class="message received">Hey everyone! What are we thinking for dinner tonight?</div>
+                <div class="message received">I vote for that new Thai place! 🍜</div>
+                <div class="message sent">Sounds perfect! I'll make a reservation for 7pm</div>
+                <div class="message received">You're the best! Can't wait 💕</div>
+            `;
+        } else if (name === 'Taylor') {
+            messagesContainer.innerHTML = `
+                <div class="message received">The concert was absolutely incredible! 🎵</div>
+                <div class="message sent">I'm so jealous! How was the opening act?</div>
+                <div class="message received">Amazing too! We should definitely go to a show together soon</div>
+                <div class="message sent">Absolutely! Let me know when the next good one is 🎶</div>
+            `;
+        }
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('messageInput');
+        const message = input.value.trim();
+        
+        // Security: Rate limiting
+        const now = Date.now();
+        if (now - lastMessageTime < RATE_LIMIT) {
+            alert('Please wait a moment before sending another message.');
+            return;
+        }
+        
+        // Security: Input validation
+        if (message.length > 1000) {
+            alert('Message is too long. Please keep it under 1000 characters.');
+            return;
+        }
+        
+        if (message) {
+            // Security: Sanitize input
+            const sanitizedMessage = sanitizeInput(message);
+            
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message sent';
+            messageDiv.textContent = sanitizedMessage;
+            messagesContainer.appendChild(messageDiv);
+            
+            input.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            lastMessageTime = now;
+            
+            // Simulate response after a delay
+            setTimeout(() => {
+                const responseDiv = document.createElement('div');
+                responseDiv.className = 'message received';
+                responseDiv.textContent = getRandomResponse();
+                messagesContainer.appendChild(responseDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1000);
+        }
+    }
+
+    function getRandomResponse() {
+        const responses = [
+            "That's so sweet! 💕",
+            "I love that! ✨",
+            "You always know what to say 😊",
+            "That made my day! 🌈",
+            "Can't wait to see you soon! 💖",
+            "You're amazing! 🦄"
+        ];
+        return responses[Math.floor(Math.random() * responses.length)];
+    }
+
+    // Social media post functionality
+    function createPost() {
+        const input = document.getElementById('postInput');
+        const content = input.value.trim();
+        
+        // Security: Rate limiting
+        const now = Date.now();
+        if (now - lastPostTime < RATE_LIMIT) {
+            alert('Please wait a moment before creating another post.');
+            return;
+        }
+        
+        // Security: Input validation
+        if (content.length > 2000) {
+            alert('Post is too long. Please keep it under 2000 characters.');
+            return;
+        }
+        
+        if (content.length < 1) {
+            alert('Please write something before posting.');
+            return;
+        }
+        
+        if (content) {
+            // Security: Sanitize input
+            const sanitizedContent = sanitizeInput(content);
+            
+            const postsContainer = document.getElementById('feedPosts');
+            const postDiv = document.createElement('div');
+            postDiv.className = 'post';
+            postDiv.innerHTML = `
+                <div class="post-header">
+                    <div class="post-avatar">✨</div>
+                    <div class="post-info">
+                        <h4>You</h4>
+                        <div class="post-time">Just now</div>
+                    </div>
+                </div>
+                <div class="post-content">${sanitizedContent}</div>
+                <div class="post-interactions">
+                    <button class="interaction-btn">❤️ 0 Loves</button>
+                    <button class="interaction-btn">💬 0 Comments</button>
+                    <button class="interaction-btn">🔗 Share</button>
+                </div>
+            `;
+            
+            postsContainer.insertBefore(postDiv, postsContainer.firstChild);
+            input.value = '';
+            lastPostTime = now;
+            
+            // Animate the new post
+            postDiv.style.opacity = '0';
+            postDiv.style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                postDiv.style.transition = 'all 0.5s ease';
+                postDiv.style.opacity = '1';
+                postDiv.style.transform = 'translateY(0)';
+            }, 100);
+        }
+    }
+
+    // Allow Enter key to send messages and create posts, ESC to go back
+    document.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            if (e.target.id === 'messageInput') {
+                sendMessage();
+            } else if (e.target.id === 'postInput' && e.ctrlKey) {
+                createPost();
+            }
+        }
+    });
+
+    // ESC key to go back
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const backBtn = document.getElementById('backBtn');
+            if (backBtn.classList.contains('show')) {
+                goBack();
+            }
+        }
+    });
+
+    // Floating hearts animation
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = ['💖', '💕', '💓', '💗', '💝', '🌈'][Math.floor(Math.random() * 6)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        heart.style.animationDelay = Math.random() * 2 + 's';
+        
+        document.getElementById('hearts').appendChild(heart);
+        
+        setTimeout(() => {
+            heart.remove();
+        }, 8000);
+    }
+
+    // Create hearts periodically
+    setInterval(createHeart, 2000);
+
+    // Relationship style selection
+    const relationshipCards = document.querySelectorAll('.relationship-card');
+    relationshipCards.forEach(card => {
+        card.addEventListener('click', () => {
+            relationshipCards.forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+        });
+    });
+
+    // Form submission with enhanced security and age verification
+    document.getElementById('signupForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Security: Get form data safely
+        const formData = new FormData(e.target);
+        const email = sanitizeInput(formData.get('email') || document.querySelector('input[type="email"]').value);
+        const name = sanitizeInput(formData.get('name') || document.querySelector('input[placeholder*="call you"]').value);
+        
+        // Security: Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+        
+        // Security: Name validation
+        if (name.length < 2 || name.length > 50) {
+            alert('Display name must be between 2 and 50 characters.');
+            return;
+        }
+        
+        // Check age
+        const birthDate = new Date(document.getElementById('birthDate').value);
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        
+        if (age < 18) {
+            alert('You must be 18 or older to join RainbowRings. Thank you for your interest!');
+            return;
+        }
+        
+        if (age > 120) {
+            alert('Please enter a valid birth date.');
+            return;
+        }
+        
+        // Check relationship selection
+        const selectedRelationship = document.querySelector('.relationship-card.selected');
+        if (!selectedRelationship) {
+            alert('Please select a relationship style!');
+            return;
+        }
+        
+        // Store age verification
+        window.ageVerified = true;
+        ageVerified = true;
+        
+        // Security: Log attempt (in real app, send to secure server)
+        console.log('Secure signup attempt:', {
+            timestamp: new Date().toISOString(),
+            email: email.substring(0, 3) + '***', // Partial email for logging
+            age: age,
+            relationshipStyle: selectedRelationship.dataset.value
+        });
+        
+        // Simulate successful signup
+        alert('Welcome to RainbowRings! 🌈✨ Check your email to verify your account and start connecting!');
+    });
+
+    // Header background on scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(255, 255, 255, 0.15)';
+        } else {
+            header.style.background = 'rgba(255, 255, 255, 0.1)';
+        }
+    });
+
+    // Initialize age verification check on load
+    document.addEventListener('DOMContentLoaded', () => {
+        checkAgeVerification();
+    });
+</script>
         // Initialize age verification check on load
         document.addEventListener('DOMContentLoaded', () => {
             checkAgeVerification();
