@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RainbowRings - Love Without Limits</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #dda0dd);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow-flow 3s ease-in-out infinite;
+        }
+
+        @keyframes rainbow-flow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 4s ease-in-out infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Social Feed Section */
+        .social-feed {
+            padding: 4rem 0;
+            color: white;
+            display: none;
+        }
+
+        .social-feed.active {
+            display: block;
+        }
+
+        .post-composer {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .post-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 1rem;
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+            resize: vertical;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .post-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .post-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .post-option {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .post-option:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .feed-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .post {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .post-info h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .post-time {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .post-content {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .post-interactions {
+            display: flex;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .interaction-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .interaction-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Chat Section */
+        .chat-section {
+            padding: 4rem 0;
+            color: white;
+            display: none;
+        }
+
+        .chat-section.active {
+            display: block;
+        }
+
+        .chat-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            height: 600px;
+        }
+
+        .chat-sidebar {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chat-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chat-item:hover, .chat-item.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-window {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 1rem;
+            border-radius: 20px;
+            word-wrap: break-word;
+        }
+
+        .message.sent {
+            align-self: flex-end;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        }
+
+        .message.received {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-input-container {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .chat-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .send-btn {
+            padding: 1rem 1.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Age Verification Modal */
+        .age-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .age-modal.hidden {
+            display: none;
+        }
+
+        .age-modal-content {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .age-modal h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .age-modal p {
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .age-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .age-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .age-btn.yes {
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            color: white;
+        }
+
+        .age-btn.no {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow-flow 3s ease-in-out infinite;
+        }
+
+        /* Community Section */
+        .community {
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .community h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .pride-flags {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .flag {
+            width: 60px;
+            height: 40px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .flag:hover {
+            transform: scale(1.2);
+        }
+
+        .flag.rainbow { background: linear-gradient(to right, #e40303, #ff8c00, #ffed00, #008018, #004cff, #732982); }
+        .flag.trans { background: linear-gradient(to right, #5bcffa, #f5a9b8, #ffffff, #f5a9b8, #5bcffa); }
+        .flag.bi { background: linear-gradient(to bottom, #d60270 33%, #9b59b6 33%, #9b59b6 67%, #0038a8 67%); }
+        .flag.pan { background: linear-gradient(to bottom, #ff1b8d 33%, #ffda00 33%, #ffda00 67%, #1bb3ff 67%); }
+        .flag.lesbian { background: linear-gradient(to bottom, #d52d00, #ef7627, #ff9a56, #ffffff, #d162a4, #b55690, #a30262); }
+        .flag.ace { background: linear-gradient(to bottom, #000000 25%, #a3a3a3 25%, #a3a3a3 50%, #ffffff 50%, #ffffff 75%, #800080 75%); }
+
+        /* Join Section */
+        .join-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .signup-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group input, .form-group select {
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group label {
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-align: left;
+        }
+
+        .relationship-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .relationship-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .relationship-card:hover, .relationship-card.selected {
+            border-color: #4ecdc4;
+            background: rgba(78, 205, 196, 0.2);
+        }
+
+        /* Section Display */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.1);
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.2rem; }
+            .nav-links { display: none; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .chat-container { grid-template-columns: 1fr; }
+            .chat-sidebar { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Age Verification Modal -->
+    <div class="age-modal" id="ageModal">
+        <div class="age-modal-content">
+            <h2>🔞 Age Verification</h2>
+            <p>RainbowRings is an adult platform for users 18+. By continuing, you confirm that you are at least 18 years old and agree to our Terms of Service.</p>
+            <p><strong>Are you 18 years or older?</strong></p>
+            <div class="age-buttons">
+                <button class="age-btn yes" onclick="verifyAge(true)">Yes, I'm 18+</button>
+                <button class="age-btn no" onclick="verifyAge(false)">No, I'm under 18</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-hearts" id="hearts"></div>
+    
+    <header>
+        <nav class="container">
+            <div class="logo">🌈 RainbowRings</div>
+            <ul class="nav-links">
+                <li><a onclick="showSection('home')">Home</a></li>
+                <li><a onclick="showSection('feed')">Social Feed</a></li>
+                <li><a onclick="showSection('chat')">Messages</a></li>
+                <li><a onclick="showSection('features')">Features</a></li>
+                <li><a onclick="showSection('join')">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section class="section active" id="home">
+            <div class="hero">
+                <div class="container">
+                    <h1>Love Without Limits</h1>
+                    <p>The inclusive social platform for LGBTQ+ individuals embracing all forms of love</p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary" onclick="showSection('join')">Find Your Community</button>
+                        <button class="btn btn-secondary" onclick="showSection('features')">Learn More</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="community">
+                <div class="container">
+                    <h2>Celebrating All Identities</h2>
+                    <p>Every stripe of the rainbow is welcome here</p>
+                    <div class="pride-flags">
+                        <div class="flag rainbow" title="Pride Flag"></div>
+                        <div class="flag trans" title="Transgender Flag"></div>
+                        <div class="flag bi" title="Bisexual Flag"></div>
+                        <div class="flag pan" title="Pansexual Flag"></div>
+                        <div class="flag lesbian" title="Lesbian Flag"></div>
+                        <div class="flag ace" title="Asexual Flag"></div>
+                    </div>
+                    <p>Join thousands of amazing people finding love, friendship, and community</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Feed Section -->
+        <section class="section" id="feed">
+            <div class="social-feed">
+                <div class="container">
+                    <h2 style="text-align: center; margin-bottom: 2rem;">Community Feed</h2>
+                    
+                    <div class="post-composer">
+                        <textarea class="post-input" placeholder="Share your thoughts with the community... What's on your mind? 🌈" id="postInput"></textarea>
+                        <div class="post-actions">
+                            <div class="post-options">
+                                <button class="post-option">📷 Photo</button>
+                                <button class="post-option">🎥 Video</button>
+                                <button class="post-option">📍 Location</button>
+                                <button class="post-option">😊 Feeling</button>
+                            </div>
+                            <button class="btn btn-primary" onclick="createPost()">Share Post</button>
+                        </div>
+                    </div>
+
+                    <div class="feed-posts" id="feedPosts">
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-avatar">🦄</div>
+                                <div class="post-info">
+                                    <h4>Alex Rainbow</h4>
+                                    <div class="post-time">2 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                Just had the most amazing date night with my two partners! 💕 We went to the new art gallery downtown and then cooked dinner together. Feeling so grateful for this beautiful polycule! #PolyLife #LoveIsLove
+                            </div>
+                            <div class="post-interactions">
+                                <button class="interaction-btn">❤️ 24 Loves</button>
+                                <button class="interaction-btn">💬 8 Comments</button>
+                                <button class="interaction-btn">🔗 Share</button>
+                            </div>
+                        </div>
+
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-avatar">🌟</div>
+                                <div class="post-info">
+                                    <h4>Jordan Pride</h4>
+                                    <div class="post-time">5 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                Coming out as non-binary to my family today was scary but so worth it! 🏳️‍⚧️ The support from this community gave me the courage I needed. Thank you all for being amazing! ✨
+                            </div>
+                            <div class="post-interactions">
+                                <button class="interaction-btn">❤️ 47 Loves</button>
+                                <button class="interaction-btn">💬 15 Comments</button>
+                                <button class="interaction-btn">🔗 Share</button>
+                            </div>
+                        </div>
+
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="post-avatar">🔥</div>
+                                <div class="post-info">
+                                    <h4>Sam Phoenix</h4>
+                                    <div class="post-time">1 day ago</div>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                Pride month planning committee meeting tonight! 🌈 We're organizing the biggest celebration our city has ever seen. Who else is excited?! DM me if you want to volunteer! #Pride2024
+                            </div>
+                            <div class="post-interactions">
+                                <button class="interaction-btn">❤️ 92 Loves</button>
+                                <button class="interaction-btn">💬 32 Comments</button>
+                                <button class="interaction-btn">🔗 Share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chat Section -->
+        <section class="section" id="chat">
+            <div class="chat-section">
+                <div class="container">
+                    <h2 style="text-align: center; margin-bottom: 2rem;">Messages</h2>
+                    
+                    <div class="chat-container">
+                        <div class="chat-sidebar">
+                            <h3 style="margin-bottom: 1rem;">Conversations</h3>
+                            <div class="chat-list">
+                                <div class="chat-item active" onclick="selectChat(this, 'Riley')">
+                                    <div class="chat-avatar">🌺</div>
+                                    <div>
+                                        <div style="font-weight: bold;">Riley</div>
+                                        <div style="font-size: 0.9rem; opacity: 0.7;">Hey! How was your day? 💕</div>
+                                    </div>
+                                </div>
+                                <div class="chat-item" onclick="selectChat(this, 'Casey & Morgan')">
+                                    <div class="chat-avatar">💫</div>
+                                    <div>
+                                        <div style="font-weight: bold;">Casey & Morgan</div>
+                                        <div style="font-size: 0.9rem; opacity: 0.7;">Group chat: Dinner plans?</div>
+                                    </div>
+                                </div>
+                                <div class="chat-item" onclick="selectChat(this, 'Taylor')">
+                                    <div class="chat-avatar">🦋</div>
+                                    <div>
+                                        <div style="font-weight: bold;">Taylor</div>
+                                        <div style="font-size: 0.9rem; opacity: 0.7;">The concert was amazing!</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="chat-window">
+                            <div class="chat-header">
+                                <div class="chat-avatar">🌺</div>
+                                <div>
+                                    <div style="font-weight: bold;" id="chatName">Riley</div>
+                                    <div style="font-size: 0.9rem; opacity: 0.7;">Online now</div>
+                                </div>
+                            </div>
+                            
+                            <div class="chat-messages" id="chatMessages">
+                                <div class="message received">Hey! How was your day? 💕</div>
+                                <div class="message sent">It was great! Just got back from the farmer's market with my partners</div>
+                                <div class="message received">That sounds lovely! I'd love to meet them sometime 😊</div>
+                                <div class="message sent">They'd love to meet you too! Maybe we could all grab coffee this weekend?</div>
+                                <div class="message received">That sounds perfect! I'm free Saturday afternoon ✨</div>
+                            </div>
+                            
+                            <div class="chat-input-container">
+                                <input type="text" class="chat-input" placeholder="Type a message..." id="messageInput">
+                                <button class="send-btn" onclick="sendMessage()">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section" id="features">
+            <div class="features">
+                <div class="container">
+                    <h2>Built for Every Kind of Love</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">💕</div>
+                            <h3>Polyamory Friendly</h3>
+                            <p>Connect with multiple partners openly. Set relationship status as single, partnered, or seeking additional connections.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🏳️‍🌈</div>
+                            <h3>LGBTQ+ Focused</h3>
+                            <p>A safe space designed by and for our community. Express your authentic self with pride.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">👥</div>
+                            <h3>Group Connections</h3>
+                            <p>Find polycules, join friend groups, or create communities around shared interests and values.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🛡️</div>
+                            <h3>Safe & Secure</h3>
+                            <p>Advanced privacy controls, identity verification, and community moderation keep you protected.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💬</div>
+                            <h3>Real-time Chat</h3>
+                            <p>Connect instantly with matches and friends through our secure messaging system.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📱</div>
+                            <h3>Social Sharing</h3>
+                            <p>Share your journey, celebrate milestones, and connect through posts and community discussions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Section -->
+        <section class="section" id="join">
+            <div class="join-section">
+                <div class="container">
+                    <h2>Ready to Find Your People?</h2>
+                    <p>Join RainbowRings and start building meaningful connections today</p>
+                    
+                    <form class="signup-form" id="signupForm">
+                        <div class="form-group">
+                            <label>Display Name</label>
+                            <input type="text" placeholder="How should we call you?" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="your@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" required id="birthDate">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>I identify as:</label>
+                            <select required>
+                                <option value="">Select your identity</option>
+                                <option value="lesbian">Lesbian</option>
+                                <option value="gay">Gay</option>
+                                <option value="bisexual">Bisexual</option>
+                                <option value="transgender">Transgender</option>
+                                <option value="queer">Queer</option>
+                                <option value="questioning">Questioning</option>
+                                <option value="intersex">Intersex</option>
+                                <option value="asexual">Asexual</option>
+                                <option value="aromantic">Aromantic</option>
+                                <option value="pansexual">Pansexual</option>
+                                <option value="nonbinary">Non-binary</option>
+                                <option value="genderfluid">Genderfluid</option>
+                                <option value="other">Other/Multiple</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Relationship Style:</label>
+                            <div class="relationship-options">
+                                <div class="relationship-card" data-value="monogamous">
+                                    <strong>Monogamous</strong>
+                                    <p>Seeking one special person</p>
+                                </div>
+                                <div class="relationship-card" data-value="polyamorous">
+                                    <strong>Polyamorous</strong>
+                                    <p>Open to multiple loving relationships</p>
+                                </div>
+                                <div class="relationship-card" data-value="exploring">
+                                    <strong>Exploring</strong>
+                                    <p>Figuring out what works for me</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">I agree to the Terms of Service and Privacy Policy</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Join the Rainbow 🌈</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 RainbowRings. Love is love. All rights reserved.</p>
+            <p>💖 Built with pride for our amazing community 💖</p>
+        </div>
+    </footer>
+
+    <script>
+        let ageVerified = false;
+
+        // Age verification functions
+        function verifyAge(isOver18) {
+            if (isOver18) {
+                ageVerified = true;
+                document.getElementById('ageModal').classList.add('hidden');
+                // Store age verification (note: using browser memory, not localStorage)
+                window.ageVerified = true;
+            } else {
+                alert('Sorry, you must be 18 or older to access RainbowRings. Thank you for your honesty!');
+                // Redirect to a safe alternative
+                window.location.href = 'https://www.pflag.org/youthresources';
+            }
+        }
+
+        // Check if user has already verified age
+        function checkAgeVerification() {
+            if (window.ageVerified) {
+                document.getElementById('ageModal').classList.add('hidden');
+                ageVerified = true;
+            }
+        }
+
+        // Show different sections
+        function showSection(sectionName) {
+            if (!ageVerified && !window.ageVerified) {
+                document.getElementById('ageModal').classList.remove('hidden');
+                return;
+            }
+
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionName).classList.add('active');
+        }
+
+        // Chat functionality
+        function selectChat(element, name) {
+            // Remove active class from all chat items
+            const chatItems = document.querySelectorAll('.chat-item');
+            chatItems.forEach(item => item.classList.remove('active'));
+            
+            // Add active class to selected item
+            element.classList.add('active');
+            
+            // Update chat header
+            document.getElementById('chatName').textContent = name;
+            
+            // Clear and update messages based on selection
+            const messagesContainer = document.getElementById('chatMessages');
+            messagesContainer.innerHTML = '';
+            
+            if (name === 'Riley') {
+                messagesContainer.innerHTML = `
+                    <div class="message received">Hey! How was your day? 💕</div>
+                    <div class="message sent">It was great! Just got back from the farmer's market with my partners</div>
+                    <div class="message received">That sounds lovely! I'd love to meet them sometime 😊</div>
+                    <div class="message sent">They'd love to meet you too! Maybe we could all grab coffee this weekend?</div>
+                    <div class="message received">That sounds perfect! I'm free Saturday afternoon ✨</div>
+                `;
+            } else if (name === 'Casey & Morgan') {
+                messagesContainer.innerHTML = `
+                    <div class="message received">Hey everyone! What are we thinking for dinner tonight?</div>
+                    <div class="message received">I vote for that new Thai place! 🍜</div>
+                    <div class="message sent">Sounds perfect! I'll make a reservation for 7pm</div>
+                    <div class="message received">You're the best! Can't wait 💕</div>
+                `;
+            } else if (name === 'Taylor') {
+                messagesContainer.innerHTML = `
+                    <div class="message received">The concert was absolutely incredible! 🎵</div>
+                    <div class="message sent">I'm so jealous! How was the opening act?</div>
+                    <div class="message received">Amazing too! We should definitely go to a show together soon</div>
+                    <div class="message sent">Absolutely! Let me know when the next good one is 🎶</div>
+                `;
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                const messagesContainer = document.getElementById('chatMessages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message sent';
+                messageDiv.textContent = message;
+                messagesContainer.appendChild(messageDiv);
+                
+                input.value = '';
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                // Simulate response after a delay
+                setTimeout(() => {
+                    const responseDiv = document.createElement('div');
+                    responseDiv.className = 'message received';
+                    responseDiv.textContent = getRandomResponse();
+                    messagesContainer.appendChild(responseDiv);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        function getRandomResponse() {
+            const responses = [
+                "That's so sweet! 💕",
+                "I love that! ✨",
+                "You always know what to say 😊",
+                "That made my day! 🌈",
+                "Can't wait to see you soon! 💖",
+                "You're amazing! 🦄"
+            ];
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
+        // Social media post functionality
+        function createPost() {
+            const input = document.getElementById('postInput');
+            const content = input.value.trim();
+            
+            if (content) {
+                const postsContainer = document.getElementById('feedPosts');
+                const postDiv = document.createElement('div');
+                postDiv.className = 'post';
+                postDiv.innerHTML = `
+                    <div class="post-header">
+                        <div class="post-avatar">✨</div>
+                        <div class="post-info">
+                            <h4>You</h4>
+                            <div class="post-time">Just now</div>
+                        </div>
+                    </div>
+                    <div class="post-content">${content}</div>
+                    <div class="post-interactions">
+                        <button class="interaction-btn">❤️ 0 Loves</button>
+                        <button class="interaction-btn">💬 0 Comments</button>
+                        <button class="interaction-btn">🔗 Share</button>
+                    </div>
+                `;
+                
+                postsContainer.insertBefore(postDiv, postsContainer.firstChild);
+                input.value = '';
+                
+                // Animate the new post
+                postDiv.style.opacity = '0';
+                postDiv.style.transform = 'translateY(-20px)';
+                setTimeout(() => {
+                    postDiv.style.transition = 'all 0.5s ease';
+                    postDiv.style.opacity = '1';
+                    postDiv.style.transform = 'translateY(0)';
+                }, 100);
+            }
+        }
+
+        // Allow Enter key to send messages and create posts
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                if (e.target.id === 'messageInput') {
+                    sendMessage();
+                } else if (e.target.id === 'postInput' && e.ctrlKey) {
+                    createPost();
+                }
+            }
+        });
+
+        // Floating hearts animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = ['💖', '💕', '💓', '💗', '💝', '🌈'][Math.floor(Math.random() * 6)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHeart, 2000);
+
+        // Relationship style selection
+        const relationshipCards = document.querySelectorAll('.relationship-card');
+        relationshipCards.forEach(card => {
+            card.addEventListener('click', () => {
+                relationshipCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+            });
+        });
+
+        // Form submission with age verification
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Check age
+            const birthDate = new Date(document.getElementById('birthDate').value);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            if (age < 18) {
+                alert('You must be 18 or older to join RainbowRings. Thank you for your interest!');
+                return;
+            }
+            
+            // Check relationship selection
+            const selectedRelationship = document.querySelector('.relationship-card.selected');
+            if (!selectedRelationship) {
+                alert('Please select a relationship style!');
+                return;
+            }
+            
+            // Store age verification
+            window.ageVerified = true;
+            ageVerified = true;
+            
+            // Simulate successful signup
+            alert('Welcome to RainbowRings! 🌈✨ Check your email to verify your account and start connecting!');
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        // Initialize age verification check on load
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAgeVerification();
+        });
+    </script>
+</body>
+</html>
